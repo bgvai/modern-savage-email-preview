@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BG list → Modern Savage Founding Tribe — Pipeline</title>
+<style>
+  :root{ --forest:#2c3e28; --orange:#cc4a14; --tallow:#d4c89a; --ink:#1d1d1b; --muted:#6b6b63; --live:#1f8a4c; --pending:#c9851a; --line:#cdd2c6; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f3ef;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:32px 16px}
+  .wrap{max-width:920px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 4px;color:var(--forest)}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-bottom:22px;flex-wrap:wrap}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .stage{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .stage h2{margin:0 0 4px;font-size:16px;display:flex;align-items:center;gap:10px}
+  .num{background:var(--forest);color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:0 0 auto}
+  .stage p{margin:4px 0 0;font-size:13.5px;color:#333}
+  .stage .meta{margin-top:8px;font-size:12px;color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#f3f2ec;border:1px solid #e7e5da;border-radius:5px;padding:1px 6px}
+  .badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em;margin-left:auto}
+  .b-live{background:rgba(31,138,76,.12);color:var(--live)}
+  .b-pending{background:rgba(201,133,26,.14);color:var(--pending)}
+  .arrow{height:26px;display:flex;align-items:center;justify-content:center;color:var(--line)}
+  .arrow svg{width:22px;height:26px}
+  .branch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:640px){.branch{grid-template-columns:1fr}}
+  .tag{display:inline-block;font-size:11px;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+  .sys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+  @media(max-width:640px){.sys{grid-template-columns:1fr}}
+  .syscard{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;background:#fbfbf8}
+  .syscard h3{margin:0 0 6px;font-size:13px;color:var(--forest)}
+  .syscard li{font-size:12.5px;color:#444;margin:2px 0}
+  .gates{margin-top:22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;padding:14px 18px}
+  .gates h3{margin:0 0 6px;font-size:14px;color:var(--forest)}
+  .gates li{font-size:13px;margin:3px 0}
+  ul{margin:6px 0;padding-left:18px}
+  .cta{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:11px 22px;border-radius:8px}
+  .cta:hover{background:#b23f10}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Bear Grylls list → Modern Savage Founding Tribe</h1>
+  <p class="sub">The full email sign-up pipeline. How a person on Bear's newsletter list becomes a Modern Savage Founding Tribe member, in one tap.</p>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--live)"></span>Live / built &amp; verified</span>
+    <span><span class="dot" style="background:var(--pending)"></span>Ready, waiting on a human gate</span>
+  </div>
+
+  <div style="margin:0 0 24px"><a class="cta" href="index.html" target="_blank">📧 View the email draft</a></div>
+
+  <!-- 1 -->
+  <div class="stage">
+    <h2><span class="num">1</span> The source list <span class="badge b-live">live</span></h2>
+    <p><strong>54,373</strong> legacy Bear Grylls newsletter subscribers (Mailchimp 2016–2019), imported into Supabase.</p>
+    <p class="meta">Table <span class="mono">bg_newsletter_subscribers</span> (status = active) · Bear Grylls Supabase project</p>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 26"><path d="M11 0v20M4 14l7 8 7-8" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <!-- 2 -->
+  <div class="stage">
+    <h2><span class="num">2</span> The send <span class="badge b-pending">built · gated</span></h2>
+    <p>Script <span class="mono">send-bg-modern-savage.mjs</span> reads the active list and, per recipient, mints a signed one-tap <strong>Join</strong> link + one-click <strong>Unsubscribe</strong> link, renders the email, and sends via <strong>Resend</strong> from <span class="mono">bear@beargrylls.com</span>.</p>
+    <p class="meta">Dry-run by default · warmed resumable batches · live preflight aborts if unsubscribe links won't verify.</p>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 26"><path d="M11 0v20M4 14l7 8 7-8" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <!-- 3 -->
+  <div class="stage">
+    <h2><span class="num">3</span> The email lands <span class="badge b-pending">drafted</span></h2>
+    <p>A short personal note from Bear: thanks for being on the list → Running Wild S9 → his first supplement, Modern Savage → one button: <strong>“Join the Founding Tribe”</strong> → unsubscribe in the footer. No price, no first-name merge.</p>
+    <p class="meta">They do one of three things ↓</p>
+    <p style="margin-top:10px"><a class="cta" href="index.html" target="_blank">📧 View the email draft</a></p>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 26"><path d="M11 0v20M4 14l7 8 7-8" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <!-- 4 branch -->
+  <div class="branch">
+    <div class="stage">
+      <span class="tag">Path A — they join</span>
+      <h2 style="font-size:15px"><span class="num">4a</span> One-tap join <span class="badge b-live">live</span></h2>
+      <p>Click → <span class="mono">modernsavage.co/join?e=…&amp;t=…</span> (their email is in the signed link — <strong>no retyping</strong>). The page verifies the token via <span class="mono">/api/join</span>, adds them to <span class="mono">founding_tribe</span>, sends the “Welcome to Modern Savage” email from <span class="mono">bear@modernsavage.co</span>, and shows “You're in.”</p>
+      <p class="meta">Modern Savage Supabase · dup-safe · scanner-safe (JS-gated)</p>
+    </div>
+    <div class="stage">
+      <span class="tag">Path B — they opt out</span>
+      <h2 style="font-size:15px"><span class="num">4b</span> One-click unsubscribe <span class="badge b-live">live</span></h2>
+      <p>Click (or Gmail/Yahoo one-click) → <span class="mono">beargrylls.com/unsubscribe</span> verifies the token and flips <span class="mono">bg_newsletter_subscribers.status</span> to <strong>unsubscribed</strong>, with an audit trail. Legally required, fully working.</p>
+      <p class="meta">RFC 8058 List-Unsubscribe header included</p>
+    </div>
+    <div class="stage">
+      <span class="tag" style="color:var(--muted)">Path C — they do nothing</span>
+      <h2 style="font-size:15px"><span class="num" style="background:var(--muted)">4c</span> No action <span class="badge" style="background:#ececec;color:#8a8a82">most recipients</span></h2>
+      <p>They don't click either button. Nothing changes: they stay on the Bear Grylls list exactly as before, fully compliant (they were already opted in). No data is written anywhere.</p>
+      <p class="meta">The realistic majority. We can re-engage later: a follow-up to non-openers, or market Modern Savage to the whole BG list down the line (Jesse's plan).</p>
+    </div>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 22 26"><path d="M11 0v20M4 14l7 8 7-8" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <!-- 5 -->
+  <div class="stage">
+    <h2><span class="num">5</span> The outcome <span class="badge b-live">live</span></h2>
+    <p>Joiners are now on the Modern Savage <span class="mono">founding_tribe</span> list and receive launch comms from Bear. Campaign conversion = cross-reference the send list against join timestamps.</p>
+  </div>
+
+  <!-- two systems -->
+  <div class="sys">
+    <div class="syscard">
+      <h3>Bear Grylls side (the audience)</h3>
+      <ul>
+        <li>Supabase: <span class="mono">bg_newsletter_subscribers</span></li>
+        <li>Site: beargrylls.com (Vite + Vercel)</li>
+        <li>Owns: the list, the from-address, unsubscribe</li>
+        <li>Sends the <em>campaign</em> email</li>
+      </ul>
+    </div>
+    <div class="syscard">
+      <h3>Modern Savage side (the destination)</h3>
+      <ul>
+        <li>Supabase: <span class="mono">founding_tribe</span></li>
+        <li>Site: modernsavage.co (Next.js + Vercel)</li>
+        <li>Owns: the join flow + welcome email</li>
+        <li>Sends the <em>welcome</em> email</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- gates -->
+  <div class="gates">
+    <h3>What's left before it goes out</h3>
+    <ul>
+      <li><strong>Jesse signs off the email copy.</strong></li>
+      <li><strong>Warm-up send</strong>: seed test to a few inboxes → ramp daily (MAX_SEND) → full. Never blast 54k dormant addresses at once.</li>
+      <li>Everything technical (list, join, unsubscribe, welcome, send script, from-domain auth) is built and verified.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
